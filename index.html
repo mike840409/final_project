@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title>留言板</title>
+		<script language="javascript">
+			function pushon(s){
+        var table = document.createElement("table");
+        table.className="table";
+        table.innerHTML = document.getElementById("text").value;
+        document.getElementById("text").value = "";
+        if(s.wanttime.checked){
+          var time = table.insertRow(0);
+          time.innerHTML = new Date();
+        }
+        if(s.is_important.value=="important"){
+          table.style.backgroundColor="yellow";
+        }
+        if(s.is_important.value=="very_important"){
+          table.style.backgroundColor="red";
+        }
+        message.appendChild(table);
+			}
+		</script>
+	</head>
+  <style type="text/css"> 
+   body{background-color:gray;} 
+   .table{ background-color:green; border:2px solid blue; width:300px; } 
+  </style> 
+	<body>
+    <form>
+   <table>
+     <tr>
+       <select name="is_important" size="1">
+         <option selected value="normal">normal</option>
+         <option value="important">important</option>
+         <option value="very_important">very important</option>
+       </select>
+     </tr>
+    <tr>
+	   <td colspan="2">
+		  <textarea id="text" cols="40" rows="8"></textarea>
+	   </td>
+    </tr>
+    <tr>
+     <td>
+      <input name="wanttime" type=checkbox value="wanttime">want add time?
+     </td>
+	   <td>
+	  	<input name="submit" type="button" onclick="pushon(this.form)" value="send"/>
+	   </td>
+    </tr>
+   </table>
+    </form>
+   <table id="message">
+   </table>
+	</body>
+</html>
